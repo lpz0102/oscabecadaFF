@@ -5,21 +5,22 @@ import frc.robot.Subsystem.IntakeFloor;
 
 public class IntakeGirando extends Command {
     private final IntakeFloor intake;
-    private final double velocidadeGirando = 1.0;
+    private final double velocidadeGirando;
 
-    public IntakeGirando(IntakeFloor intake) {
+    public IntakeGirando(IntakeFloor intake, double velocidadeGirando) {
         this.intake = intake;
+        this.velocidadeGirando = velocidadeGirando;
         addRequirements(intake);
     }
- 
+
     @Override
     public void execute() {
-        intake.intakeCleitaoMotor.set(velocidadeGirando);
+        intake.setRoller(velocidadeGirando);
     }
 
     @Override
     public void end(boolean interrupted) {
-        intake.intakeCleitaoMotor.set(0);
+        intake.stopRoller();
     }
 
     @Override

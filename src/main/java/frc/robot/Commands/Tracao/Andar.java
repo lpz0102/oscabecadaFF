@@ -11,33 +11,34 @@ public class Andar extends Command {
     public double comecarTimer;
     public double tempoAtual;
 
-    public Andar(Traction traction, double velocidade, double duracao){
+    public Andar(Traction traction, double velocidade, double duracao) {
         this.traction = traction;
         this.velocidade = velocidade;
         this.duracao = duracao;
         addRequirements(traction);
     }
 
-@Override
-public void initialize (){
-    comecarTimer = System.currentTimeMillis()/1000.0;
-    traction.arcadeMode(velocidade, velocidade);
-}
-@Override
-public void execute(){
-    SmartDashboard.putNumber("Tempo que esta ativo: ", tempoAtual);
-}
+    @Override
+    public void initialize() {
+        comecarTimer = System.currentTimeMillis() / 1000.0;
+        traction.arcadeMode(velocidade, velocidade);
+    }
 
-@Override
-public void end(boolean interromper){
-    traction.stop();
-}
+    @Override
+    public void execute() {
+        SmartDashboard.putNumber("Tempo que esta ativo: ", tempoAtual);
+    }
 
-@Override
-public boolean isFinished(){
-    tempoAtual = System.currentTimeMillis()/ 1000.0;
-    return (tempoAtual - comecarTimer) >= duracao;
+    @Override
+    public void end(boolean interromper) {
+        traction.stop();
+    }
 
-}
+    @Override
+    public boolean isFinished() {
+        tempoAtual = System.currentTimeMillis() / 1000.0;
+        return (tempoAtual - comecarTimer) >= duracao;
+
+    }
 
 }

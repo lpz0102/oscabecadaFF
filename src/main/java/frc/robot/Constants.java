@@ -1,6 +1,5 @@
 package frc.robot;
 
-
 public final class Constants {
     public static class TractionConstants {
         public static int rightFrontMotorID = 12;
@@ -16,7 +15,7 @@ public final class Constants {
 
     public static class IntakeFloor {
         public static int intakeMarlonMotorID = 13;
-        public static int intakeCleitaoMotorID = 14;
+        public static int intakeCleitaoMotorID = 19;
 
         public static final double IntakeIn = 45.0;
         public static final double IntakeOut = 0.0;

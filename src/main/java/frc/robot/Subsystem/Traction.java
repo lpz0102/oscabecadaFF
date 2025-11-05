@@ -23,28 +23,37 @@ public class Traction extends SubsystemBase {
         SparkMaxConfig configSparkMotorEsquerda = new SparkMaxConfig();
         SparkMaxConfig configSparkMotorDireita = new SparkMaxConfig();
 
-        
         @SuppressWarnings("removal")
         MotorControllerGroup leftMotorControllerGroup = new MotorControllerGroup(leftMotorFront, leftMotorback);
         @SuppressWarnings("removal")
         MotorControllerGroup rightMotorControllerGroup = new MotorControllerGroup(rightMotorFront, rightMotorback);
 
-        DifferentialDrive differentialDrive = new DifferentialDrive(leftMotorControllerGroup, rightMotorControllerGroup);
+        DifferentialDrive differentialDrive = new DifferentialDrive(leftMotorControllerGroup,
+                        rightMotorControllerGroup);
 
         public Traction() {
+                /*
+                 * inverter na questão do true or false
+                 * original
+                 * configSparkMotorDireita.inverted(false)
+                 * alterado
+                 * configSparkMotorDireita.inverted(true)
+                 */
                 configSparkMotorDireita.inverted(false).idleMode(IdleMode.kBrake);
                 configSparkMotorDireita.smartCurrentLimit(50);
 
-                rightMotorFront.configure(configSparkMotorDireita, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
-                rightMotorback.configure(configSparkMotorDireita, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
-
-
+                rightMotorFront.configure(configSparkMotorDireita, ResetMode.kResetSafeParameters,
+                                PersistMode.kPersistParameters);
+                rightMotorback.configure(configSparkMotorDireita, ResetMode.kResetSafeParameters,
+                                PersistMode.kPersistParameters);
 
                 configSparkMotorEsquerda.inverted(false).idleMode(IdleMode.kBrake);
                 configSparkMotorEsquerda.smartCurrentLimit(50);
 
-                leftMotorFront.configure(configSparkMotorEsquerda, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
-                leftMotorback.configure(configSparkMotorEsquerda, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
+                leftMotorFront.configure(configSparkMotorEsquerda, ResetMode.kResetSafeParameters,
+                                PersistMode.kPersistParameters);
+                leftMotorback.configure(configSparkMotorEsquerda, ResetMode.kResetSafeParameters,
+                                PersistMode.kPersistParameters);
 
         }
 
@@ -54,13 +63,14 @@ public class Traction extends SubsystemBase {
         }
 
         public void arcadeMode(double drive, double turn) {
-                differentialDrive.arcadeDrive(drive, turn);
+                differentialDrive.arcadeDrive(drive, +turn);
         }
 
         public void stop() {
                 differentialDrive.stopMotor();
         }
-        public void ativarTurbo(boolean turbo){
+
+        public void ativarTurbo(boolean turbo) {
                 this.turbo = turbo;
         }
 }

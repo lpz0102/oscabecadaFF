@@ -8,19 +8,19 @@ public class IntakeDescendo extends Command {
     private final double velocidadeDescendo = 0.6;
     private final double posicaoDescendo = 100.0;
 
-
     public IntakeDescendo(IntakeFloor intake) {
         this.intake = intake;
         addRequirements(intake);
     }
+
     @Override
-    public void initialize(){
-        
+    public void initialize() {
+
     }
 
     @Override
     public void execute() {
-       intake.intakeMarlonMotor.set(velocidadeDescendo);
+        intake.intakeMarlonMotor.set(velocidadeDescendo);
     }
 
     @Override
@@ -30,6 +30,6 @@ public class IntakeDescendo extends Command {
 
     @Override
     public boolean isFinished() {
-        return intake.getIntakeMarlonPosition() <= posicaoDescendo;
+        return false;
     }
 }

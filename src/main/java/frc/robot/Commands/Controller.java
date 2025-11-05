@@ -11,7 +11,7 @@ public class Controller extends Command {
     public double drive;
     public double turn;
     public double velocidade;
-    
+
     public static boolean turboAtivo = false;
 
     public Controller(Traction traction, XboxController xbox) {
@@ -21,7 +21,8 @@ public class Controller extends Command {
         // Use addRequirements() here to declare subsystem dependencies.
         addRequirements(traction);
     }
-    public static void toggleTurbo(){
+
+    public static void toggleTurbo() {
         turboAtivo = !turboAtivo;
     }
 
@@ -35,25 +36,32 @@ public class Controller extends Command {
 
     // Called every time the scheduler runs while the command is scheduled.
     @Override
-    public void execute(){
+    public void execute() {
 
-        if (traction.turbo){
+        if (traction.turbo) {
             velocidade = 0.9;
-            
-        } else velocidade = 0.7;
-        
-        turn = xbox.getLeftY() * velocidade; 
-        drive  = xbox.getRightX()  * velocidade;  
 
-        
+        } else
+            velocidade = 0.6;
+        /*
+         * Talves o erro que esta acontecendo seja por conta de estar incorreto poderia
+         * ser
+         * double drive = xbox.getLeftY() * velocidade;
+         * double turn = xbox.getRightX() * velocidade;
+         * ou precisariamos inverter no codigo
+         * double turn = -xbox.getRightX() * velocidade;
+         * ou lá no traction.
+         */
+        turn = xbox.getLeftY() * velocidade;
+        drive = xbox.getRightX() * velocidade;
+
         double max = Math.abs(drive) + Math.abs(turn);
         if (max > 1.0) {
             drive /= max;
-            turn  /= max;
+            turn /= max;
         }
 
-        
-        traction.arcadeMode(drive, turn);
+        traction.arcadeMode(drive, +turn);
     }
 
     // Called once the command ends or is interrupted.
