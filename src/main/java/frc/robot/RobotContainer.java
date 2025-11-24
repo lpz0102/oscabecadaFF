@@ -10,9 +10,9 @@ import frc.robot.Subsystem.Traction;
 import frc.robot.Subsystem.IntakeFloor;
 import frc.robot.Commands.AtivarTurbo;
 import frc.robot.Commands.Controller;
-import frc.robot.Commands.Intakefloor.IntakeDescendo;
-import frc.robot.Commands.Intakefloor.IntakeGirando;
-import frc.robot.Commands.Intakefloor.IntakeSubindo;
+import frc.robot.Commands.Autonomous.Intakefloor.IntakeDescendo;
+import frc.robot.Commands.Autonomous.Intakefloor.IntakeGirando;
+import frc.robot.Commands.Autonomous.Intakefloor.IntakeSubindo;
 
 public class RobotContainer {
 
@@ -44,7 +44,7 @@ public class RobotContainer {
     btnTurbo.onTrue(new AtivarTurbo(traction));
 
     btnIntakeIn2.whileTrue(new IntakeGirando(intakeFloor, 0.5));
-    btnIntakeOut2.whileTrue(new IntakeGirando(intakeFloor, -0.5));
+    btnIntakeOut2.whileTrue(new IntakeGirando(intakeFloor, -0.9));
 
     new Trigger(() -> xbox2.getLeftY() < -0.2)
         .whileTrue(new IntakeSubindo(intakeFloor));

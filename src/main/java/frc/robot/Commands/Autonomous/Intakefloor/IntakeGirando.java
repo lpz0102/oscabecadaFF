@@ -1,4 +1,4 @@
-package frc.robot.Commands.Intakefloor;
+package frc.robot.Commands.Autonomous.Intakefloor;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.Subsystem.IntakeFloor;

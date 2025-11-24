@@ -44,7 +44,7 @@ public class Controller extends Command {
         } else
             velocidade = 0.6;
         /*
-         * Talves o erro que esta acontecendo seja por conta de estar incorreto poderia
+         * Talvez o erro que esta acontecendo seja por conta de estar incorreto poderia
          * ser
          * double drive = xbox.getLeftY() * velocidade;
          * double turn = xbox.getRightX() * velocidade;

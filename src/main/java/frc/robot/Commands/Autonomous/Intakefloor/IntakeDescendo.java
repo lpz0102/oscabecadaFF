@@ -1,12 +1,11 @@
-package frc.robot.Commands.Intakefloor;
+package frc.robot.Commands.Autonomous.Intakefloor;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.Subsystem.IntakeFloor;
 
 public class IntakeDescendo extends Command {
     private final IntakeFloor intake;
-    private final double velocidadeDescendo = 0.6;
-    private final double posicaoDescendo = 100.0;
+    private final double velocidadeDescendo = 0.3;
 
     public IntakeDescendo(IntakeFloor intake) {
         this.intake = intake;
@@ -20,7 +19,11 @@ public class IntakeDescendo extends Command {
 
     @Override
     public void execute() {
-        intake.intakeMarlonMotor.set(velocidadeDescendo);
+        if (!intake.isNoLimiteInferior()) {
+            intake.intakeMarlonMotor.set(velocidadeDescendo);
+        } else {
+            intake.intakeMarlonMotor.stopMotor();
+        }
     }
 
     @Override

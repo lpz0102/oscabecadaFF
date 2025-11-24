@@ -17,6 +17,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class IntakeFloor extends SubsystemBase {
     public SparkMax intakeMarlonMotor = new SparkMax(Constants.IntakeFloor.intakeMarlonMotorID, MotorType.kBrushless);
     public SparkMax intakeCleitaoMotor = new SparkMax(Constants.IntakeFloor.intakeCleitaoMotorID, MotorType.kBrushless);
+    public final double LimiteSuperior = 270.0;
+    public final double LimiteInferior = 0.0;
 
     private RelativeEncoder intakeMarlonEncoder = intakeMarlonMotor.getEncoder();
 
@@ -27,6 +29,7 @@ public class IntakeFloor extends SubsystemBase {
         intakeMarlonMotor.configure(
                 new SparkMaxConfig()
                         .idleMode(IdleMode.kBrake)
+                        .inverted(true)
                         .smartCurrentLimit(50),
                 ResetMode.kNoResetSafeParameters,
                 PersistMode.kPersistParameters);
@@ -47,6 +50,23 @@ public class IntakeFloor extends SubsystemBase {
 
     public double getIntakeMarlonPosition() {
         return intakeMarlonEncoder.getPosition();
+    }
+
+    public double getPosicaoGraus() {
+        double graus = intakeMarlonEncoder.getPosition() * 360.0;
+        graus = ((graus % 360) + 360) % 360;
+        return graus;
+    }
+
+    private final double LimiteSuperiorGraus = 300.0;
+    private final double LimiteInferiorGraus = 75.0;
+
+    public boolean isNoLimiteSuperior() {
+        return getPosicaoGraus() >= LimiteSuperiorGraus;
+    }
+
+    public boolean isNoLimiteInferior() {
+        return getPosicaoGraus() <= LimiteInferiorGraus;
     }
 
     public void setIntakeMarlonVelocidade(double velocidade) {

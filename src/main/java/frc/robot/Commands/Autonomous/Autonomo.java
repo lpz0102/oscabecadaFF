@@ -3,11 +3,11 @@ package frc.robot.Commands.Autonomous;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.Subsystem.Traction;
 import frc.robot.Subsystem.IntakeFloor;
-import frc.robot.Commands.Tracao.Andar;
-import frc.robot.Commands.Tracao.Viradinha;
-import frc.robot.Commands.Intakefloor.IntakeDescendo;
-import frc.robot.Commands.Intakefloor.IntakeGirando;
-import frc.robot.Commands.Intakefloor.IntakeSubindo;
+import frc.robot.Commands.Autonomous.Intakefloor.IntakeDescendo;
+import frc.robot.Commands.Autonomous.Intakefloor.IntakeGirando;
+import frc.robot.Commands.Autonomous.Intakefloor.IntakeSubindo;
+import frc.robot.Commands.Autonomous.Tracao.Andar;
+import frc.robot.Commands.Autonomous.Tracao.Viradinha;
 
 public class Autonomo extends SequentialCommandGroup {
     public Autonomo(Traction traction, IntakeFloor intake) {
